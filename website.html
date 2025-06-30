@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <title>Web design mastery | IceWorld</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        :root {
+            --primary-color: #ed8613;
+            --primary-color-dark: #d47911;
+            --text-dark: #333333;
+            --text-light: #767268;
+            --extra-light: #f1f1f1;
+            --white: #ffffff;
+            --max-width: 1200px;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .section_container {
+            max-width: var(--max-width);
+            margin: auto;
+            padding: 5rem 1rem;
+        }
+
+        .section_header {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-align: center;
+            line-height: 3rem;
+        }
+
+        .section_description {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-light);
+            line-height: 1.75rem;
+            text-align: center;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            outline: none;
+            border: none;
+            font-size: 1rem;
+            color: var(--white);
+            background-color: var(--primary-color);
+            border-radius: 5px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-color-dark);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        img {
+            display: flex;
+            width: 100%;
+        }
+
+        a {
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        html,
+        body {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "poppins", "Sans-serif";
+        }
+
+        nav {
+            position: fixed;
+            isolation: isolate;
+            width: 100%;
+            z-index: 9;
+        }
+
+        .nav_header {
+            padding: 1rem;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--primary-color);
+        }
+
+        .nav_logo .logo {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .nav_menu_btn {
+            font-size: 1.5rem;
+            color: var(--white);
+            cursor: pointer;
+        }
+
+        .nav_links {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 2rem;
+            background-color: var(--primary-color);
+            transition: transform 0.5s;
+            z-index: -1;
+        }
+
+        .nav_links.open {
+            transform: translateY(100%);
+        }
+
+        .nav_links a {
+            font-weight: 500;
+            color: var(--white);
+            white-space: nowrap;
+        }
+
+        .nav_links a:hover {
+            color: var(--text-dark);
+        }
+
+        .nav_btns {
+            display: none;
+        }
+
+        header {
+            padding-top: 5rem;
+            display: grid;
+        }
+
+        .header_image {
+            position: relative;
+            isolation: isolate;
+        }
+
+        .header_image::before {
+            position: absolute;
+            content: "";
+            height: 100%;
+            aspect-ratio: 1;
+            background-color: var(--primary-color);
+            border-radius: 100%;
+            z-index: -1;
+        }
+
+        .header_image img {
+            max-width: 675px;
+        }
+
+        .header_content {
+            padding-block: 2rem 5rem;
+            padding-inline: 1rem;
+        }
+
+        .header_content h1 {
+            margin-bottom: 2rem;
+            font-size: 4.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-align: center;
+            line-height: 5.5rem;
+        }
+
+        .header_content h1 span {
+            color: var(--primary-color);
+        }
+
+        .header_btn {
+            margin-block: 2rem;
+            text-align: center;
+        }
+
+        .socials {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .socials a {
+            display: inline-block;
+            padding: 5px 9px;
+            font-size: 1.125rem;
+            color: var(--white);
+            background-color: var(--text-dark);
+            border-radius: 100%;
+        }
+
+        .socials a:hover {
+            background-color: var(--primary-color);
+        }
+
+        .popular_grid {
+            margin-top: 4rem;
+            display: grid;
+            gap: 4rem 1rem;
+        }
+
+        .popular_card {
+            position: relative;
+            isolation: isolate;
+        }
+
+        .popular_card::before {
+            position: absolute;
+            content: "";
+            bottom: 5rem;
+            left: 0;
+            height: 60%;
+            width: 100%;
+            z-index: -1;
+            transition: 0.5s;
+            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .popular_card:hover::before {
+            height: 90%;
+        }
+
+        .popular_card:nth-child(1)::before {
+            background-color: #fde6f2;
+        }
+
+        .popular_card:nth-child(2)::before {
+            background-color: #eedfd9;
+        }
+
+        .popular_card:nth-child(3)::before {
+            background-color: #faeaed;
+        }
+
+        .popular_card img {
+            max-width: 250px;
+            margin-inline: auto;
+        }
+
+        .popular_card_content {
+            padding: 1rem;
+            background-color: var(--white);
+            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .popular_card_content h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        .popular_card_content h3 {
+            font-size: 1.25rem;
+            font-weight: 1.2rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        @media(width > 540px) {
+            .popular_grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (width > 768px) {
+            nav {
+                position: static;
+                padding: 2rem 1rem;
+                max-width: var(--max-width);
+                margin-inline: auto;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1rem;
+            }
+
+            .nav_header {
+                flex: 1;
+                padding: 0;
+                background-color: transparent;
+            }
+
+            .nav_logo .logo {
+                color: var(--primary-color);
+            }
+
+            .nav_menu_btn {
+                display: none;
+            }
+
+            .nav_links {
+                position: static;
+                width: fit-content;
+                padding: 0;
+                flex-direction: row;
+                background-color: transparent;
+                transform: none !important;
+            }
+
+            .nav_links a {
+                color: var(--text-dark);
+            }
+
+            .nav_links a:hover {
+                color: var(--primary-color);
+            }
+
+            .nav_btns {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                gap: 1rem;
+            }
+
+            .nav_btns .btn {
+                padding: .5rem;
+                font-size: 1.5rem;
+                color: var(--text-dark);
+                background-color: transparent;
+            }
+
+            .nav_btns .btn:hover {
+                color: var(--primary-color);
+            }
+
+            header {
+                padding-top: 0;
+                grid-template-columns:
+                    minmax(0, 1fr) minmax(0, calc(var(--max-width) / 2)) minmax(0, calc(var(--max-width) / 2)) minmax(0, 1fr);
+                align-items: center;
+            }
+
+            .header_image {
+                grid-column: 3/5;
+            }
+
+            .header_content {
+                grid-area: 1/2/3/3;
+                padding-block: 5rem;
+            }
+
+            .header_content :is(h1, .section_description, .header_btn) {
+                text-align: left;
+            }
+
+            .header_content .socials {
+                justify-content: flex-start;
+            }
+
+            .popular_container .section_header {
+                text-align: left;
+            }
+
+            .popular_grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (width > 1024px) {
+            .popular_grid {
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav_header">
+            <div class="nav_logo">
+                <a href="#" class="logo">Ice <span>World</span></a>
+            </div>
+            <div class="nav_menu_btn" id="menu-btn">
+                <i class="ri-menu-3-line"></i>
+            </div>
+        </div>
+        <ul class="nav_links" id="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#contact">Contact us</a></li>
+        </ul>
+        <div class="nav_btns">
+            <button claass="btn"><i class="ri-shopping-cart-line"></i></button>
+            <button claass="btn"><i class="ri-notification-3-line"></i></button>
+        </div>
+    </nav>
+    <header id="home">
+        <div class="header_image">
+            <img src="header4.jpg" alt="">
+        </div>
+        <div class="header_content">
+            <h1>WELCOME TO OUR <span>ICE CREAM</span> WORLD</h1>
+            <p class="section_description">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis tempore dolorum commodi quasi quo
+                maiores numquam consequuntur doloremque odit nisi?
+            </p>
+            <div class="header_btn">
+                <button class="btn">Buy now</button>
+            </div>
+            <ul class="socials">
+                <li>
+                    <a href="#"><i class="ri-facebook-fill"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="ri-twitter-fill"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="ri-pinterest-line"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="ri-phone-fill"></i></a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <section class="section_container popular_container" id="menu">
+        <h2 class="sectipon_header">Popular Ice-Cream</h2>
+        <div class="popular-grid">
+            <div class="popular_card">
+                <img src="popular1.jpg" alt="popular">
+                <div class="popular_card_content">
+                    <h4>Chocolate</h4>
+                    <h3>$5.49</h3>
+                </div>
+                <div class="popular_card">
+                    <img src="popular2.jpg" alt="popular">
+                    <div class="popular_card_content">
+                        <h4>Mango</h4>
+                        <h3>$5.89</h3>
+                    </div>
+                    <div class="popular_card">
+                        <img src="popular3.webp" alt="popular">
+                        <div class="popular_card_content">
+                            <h4>Strawberry</h4>
+                            <h3>$5.69</h3>
+                        </div>
+                    </div>
+                </div>
+    </section>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <!-- <script src="website.js"></script> -->
+    <script>
+        const menuBtn = document.getElementById("menu-btn");
+        const navLinks = document.getElementById("nav-links");
+        const menuBtnIcon = menuBtn.querySelector("i");
+
+        menuBtn.addEventListener("click", (e) => {
+            navLinks.classList.toggle("open");
+
+            const isOpen = navLinks.classList.contains("open");
+            menuBtnIcon.setAttribute(
+                "class",
+                isOpen ? "ri-close-line" : "ri-menu-3-line"
+            );
+        });
+
+        navLinks.addEventListener("click", (e) => {
+            navLinks.classList.remove("open");
+            menuBtnIcon.setAttribute("class", "ri-menu-3-line");
+        });
+
+        const scrollRevealOption = {
+            distance: "50px",
+            origin: "bottom",
+            duration: 1000,
+        };
+
+        ScrollReveal().reveal(".header_image img", {
+            duration: 1000,
+        });
+        ScrollReveal().reveal(".header_content h1", {
+            ...scrollRevealOption,
+            delay: 500,
+        });
+        ScrollReveal().reveal(".header_content .section_description", {
+            ...scrollRevealOption,
+            delay: 1000,
+        });
+        ScrollReveal().reveal(".header_btn", {
+            ...scrollRevealOption,
+            delay: 1500,
+        });
+        ScrollReveal().reveal(".header_content .socials", {
+            ...scrollRevealOption,
+            delay: 2000,
+        });
+        ScrollReveal().reveal(".popular_card", {
+            ...scrollRevealOption,
+            intervel: 500,
+        });
+    </script>
+</body>
+
+</html>
